@@ -1,26 +1,22 @@
-import type { Component } from 'solid-js';
+import { lazy, type Component } from 'solid-js';
+import { Router, Route } from '@solidjs/router';
+import LazyChildren from './components/LazyChildren';
 
-import logo from './logo.svg';
-import styles from './App.module.css';
+const Home = lazy(async () => {
+    await new Promise((r) => setTimeout(r, 2000));
+    return import('./routes/Home/Home');
+});
+const LazyHome = () => (
+    <LazyChildren>
+        <Home />
+    </LazyChildren>
+);
 
 const App: Component = () => {
     return (
-        <div class={styles.App}>
-            <header class={styles.header}>
-                <img src={logo} class={styles.logo} alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    class="text-4xl text-blue-600"
-                    href="https://github.com/solidjs/solid"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn Solid
-                </a>
-            </header>
-        </div>
+        <Router>
+            <Route path="/" component={LazyHome} />
+        </Router>
     );
 };
 
