@@ -14,7 +14,7 @@ const LazyRoute = () => (
     </LazyChildren>
 );
 
-const App: Component = (props) => {
+const App: Component = () => {
     return (
         <Router root={Layout}>
             <Route path="/" component={Home} />
