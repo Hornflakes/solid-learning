@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config}*/
 const config = {
-    content: ['./src/**/*.{js,jsx,ts,tsx}'],
+    content: ['./src/**/*.{js,jsx,ts,tsx}', './node_modules/flowbite/**/*.js'],
     theme: {
         extend: {
             animation: {
@@ -8,6 +8,8 @@ const config = {
             },
         },
     },
+    plugins: [require('flowbite/plugin')],
+    darkMode: 'class',
 };
 
 module.exports = config;

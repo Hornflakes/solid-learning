@@ -8,4 +8,5 @@ export type LazyChildrenProps = {
 const LazyChildren: Component<LazyChildrenProps> = (props) => {
     return <Suspense fallback={<Spinner />}>{props.children}</Suspense>;
 };
+
 export default LazyChildren;

@@ -2,7 +2,7 @@ import { Component } from 'solid-js';
 
 const Spinner: Component = () => {
     return (
-        <div role="status" class="flex h-screen w-screen items-center justify-center">
+        <div role="status" class="flex flex-grow items-center justify-center">
             <svg
                 aria-hidden="true"
                 class="h-16 w-16 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
@@ -19,8 +19,9 @@ const Spinner: Component = () => {
                     fill="currentFill"
                 />
             </svg>
-            <span class="sr-only">Spinner...</span>
+            <span class="sr-only">loading</span>
         </div>
     );
 };
+
 export default Spinner;

@@ -1,21 +1,24 @@
 import { lazy, type Component } from 'solid-js';
-import { Router, Route } from '@solidjs/router';
+import { Route, Router } from '@solidjs/router';
+import Layout from './components/Layout';
+import Home from './routes/Home/Home';
 import LazyChildren from './components/LazyChildren';
 
-const Home = lazy(async () => {
+const Lazy = lazy(async () => {
     await new Promise((r) => setTimeout(r, 2000));
-    return import('./routes/Home/Home');
+    return import('./routes/Lazy/Lazy');
 });
-const LazyHome = () => (
+const LazyRoute = () => (
     <LazyChildren>
-        <Home />
+        <Lazy />
     </LazyChildren>
 );
 
-const App: Component = () => {
+const App: Component = (props) => {
     return (
-        <Router>
-            <Route path="/" component={LazyHome} />
+        <Router root={Layout}>
+            <Route path="/" component={Home} />
+            <Route path="/lazy" component={LazyRoute} />
         </Router>
     );
 };
