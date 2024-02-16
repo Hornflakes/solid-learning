@@ -5,7 +5,7 @@ import ErrorParagraph from '../../components/ErrorParagraph';
 import { Country } from '../../types/country';
 import CountryCard from '../../components/CountryCard';
 import Sorter, { Sort } from '../../components/Sorter';
-import { getCountries } from '../../apis/country';
+import { getCountries } from '../../data/country';
 
 type FormValues = {
     name: string;

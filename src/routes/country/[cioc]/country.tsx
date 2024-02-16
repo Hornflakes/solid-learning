@@ -1,13 +1,12 @@
-import { useNavigate, useParams } from '@solidjs/router';
-import { Component, Suspense, createResource, For, ErrorBoundary } from 'solid-js';
-import { getCountry } from '../../../apis/country';
+import { RouteSectionProps, createAsync, useNavigate } from '@solidjs/router';
+import { Component, Suspense, For, ErrorBoundary } from 'solid-js';
+import { getCountry } from '../../../data/country';
 import Spinner from '../../../components/Spinner';
 import CountryCard from '../../../components/CountryCard';
 
-const CountryPage: Component = () => {
-    const params = useParams();
+const CountryPage: Component<RouteSectionProps> = (props: RouteSectionProps) => {
     const navigate = useNavigate();
-    const [countries] = createResource(() => params.cioc, getCountry);
+    const countries = createAsync(() => getCountry(props.params.cioc));
 
     return (
         <ErrorBoundary
