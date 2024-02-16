@@ -19,6 +19,8 @@ const Spinner: Component<SpinnerProps> = (props) => {
                 <svg
                     aria-hidden="true"
                     class={`h-${merged.height} w-${merged.width} animate-spin fill-blue-600 text-gray-200 dark:text-gray-600`}
+                    height={merged.height * 4}
+                    width={merged.width * 4}
                     viewBox="0 0 100 101"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
