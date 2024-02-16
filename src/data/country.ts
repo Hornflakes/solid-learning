@@ -1,11 +1,11 @@
 import { RouteLoadFunc, cache } from '@solidjs/router';
 import { Country } from '../types/country';
 
-export const getCountries = async (name: string): Promise<Country[]> => {
+export const getCountries = cache(async (name: string): Promise<Country[]> => {
     const res = await fetch(`https://restcountries.com/v3.1/name/${name}`);
     if (res.status === 404) return [];
     return await res.json();
-};
+}, 'countries');
 
 export const getCountry = cache(async (cioc: string): Promise<Country[]> => {
     const res = await fetch(`https://restcountries.com/v3.1/alpha/${cioc}`);
@@ -14,5 +14,5 @@ export const getCountry = cache(async (cioc: string): Promise<Country[]> => {
 }, 'country');
 
 export const loadCountry: RouteLoadFunc = ({ params }) => {
-    void getCountry(params.cioc);
+    getCountry(params.cioc);
 };

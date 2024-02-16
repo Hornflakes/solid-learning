@@ -1,3 +1,4 @@
+import { useNavigate } from '@solidjs/router';
 import { Component, Show } from 'solid-js';
 
 export type CountryCardProps = {
@@ -9,6 +10,8 @@ export type CountryCardProps = {
 };
 
 const CountryCard: Component<CountryCardProps> = (props) => {
+    const navigate = useNavigate();
+
     return (
         <div class="flex max-w-sm flex-col rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
             <a>
@@ -52,8 +55,8 @@ const CountryCard: Component<CountryCardProps> = (props) => {
                 </Show>
                 <Show when={props.variant === 'country'}>
                     <div class="flex flex-grow">
-                        <a
-                            href="/search"
+                        <button
+                            onClick={() => navigate(-1)}
                             class="inline-flex items-center self-end rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
                             Back
@@ -72,7 +75,7 @@ const CountryCard: Component<CountryCardProps> = (props) => {
                                     d="M5 12h14M5 12l4-4m-4 4 4 4"
                                 />
                             </svg>
-                        </a>
+                        </button>
                     </div>
                 </Show>
             </div>

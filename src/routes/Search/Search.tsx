@@ -1,43 +1,56 @@
-import { createForm, required } from '@modular-forms/solid';
-import { Component, ErrorBoundary, For, createResource, createSignal } from 'solid-js';
+import { createForm, required, reset, setValue } from '@modular-forms/solid';
+import { Component, ErrorBoundary, For, createEffect, createSignal, Show } from 'solid-js';
 import Input from '../../components/Input';
 import ErrorParagraph from '../../components/ErrorParagraph';
 import { Country } from '../../types/country';
 import CountryCard from '../../components/CountryCard';
 import Sorter, { Sort } from '../../components/Sorter';
 import { getCountries } from '../../data/country';
+import { createAsync, useSearchParams } from '@solidjs/router';
 
 type FormValues = {
     name: string;
 };
 
+type SearchPageSearchParams = {
+    name: string;
+};
+
 const SearchPage: Component = () => {
-    const [, { Form, Field }] = createForm<FormValues>();
-    const [name, setName] = createSignal<string>();
+    const [form, { Form, Field }] = createForm<FormValues>();
+    const [countries, setCountries] = createSignal<Country[] | undefined>();
     const [loading, setLoading] = createSignal<boolean>(false);
 
-    const fetchCountries = async (name: string): Promise<Country[]> => {
+    const [searchParams, setSearchParams] = useSearchParams<SearchPageSearchParams>();
+    createEffect(() => {
+        reset(form);
+        setValue(form, 'name', searchParams.name ?? '');
+    });
+
+    const fetchCountries = async (name: string | undefined): Promise<Country[]> => {
+        if (!name) return [];
+
         setLoading(true);
         return getCountries(name).finally(() => setLoading(false));
     };
-    const [countries, { mutate: mutateCountries, refetch: refetchCountries }] = createResource(
-        name,
-        fetchCountries,
-    );
+    const fetchedCountries = createAsync(() => fetchCountries(searchParams.name));
+    createEffect(() => {
+        setCountries(fetchedCountries());
+    });
 
     const sortCountries = (sort: Sort): void => {
         const og = countries();
         if (!og) return;
 
         if (sort === 'none') {
-            refetchCountries();
+            setCountries(fetchedCountries());
             return;
         }
 
         const ret = sort === 'asc' ? 1 : -1;
         const sorted = og.toSorted((a, b) => (a.name.official > b.name.official ? ret : -ret));
 
-        mutateCountries(sorted);
+        setCountries(sorted);
     };
 
     return (
@@ -49,7 +62,7 @@ const SearchPage: Component = () => {
             <div class="mb-3">
                 <Form
                     onSubmit={(vals) => {
-                        setName(vals.name);
+                        setSearchParams({ name: vals.name });
                     }}
                 >
                     <Field name="name" validate={[required('please enter a country name.')]}>
@@ -73,23 +86,25 @@ const SearchPage: Component = () => {
 
             <Sorter disabled={(countries()?.length ?? 0) < 2} onSort={sortCountries} />
 
-            <ErrorBoundary fallback={<ErrorParagraph error="something went wrong..." />}>
-                <div class="mt-4 flex flex-wrap gap-4">
-                    <For each={countries()} fallback={countries() && 'no results ...'}>
-                        {(country) => {
-                            return (
-                                <CountryCard
-                                    title={country.name.official}
-                                    content={country.flags.alt || ''}
-                                    flagSrc={country.flags.svg}
-                                    cioc={country.cioc}
-                                    variant="search"
-                                />
-                            );
-                        }}
-                    </For>
-                </div>
-            </ErrorBoundary>
+            <Show when={!loading()}>
+                <ErrorBoundary fallback={<ErrorParagraph error="something went wrong..." />}>
+                    <div class="mt-4 flex flex-wrap gap-4">
+                        <For each={countries()} fallback={searchParams.name && 'no results ...'}>
+                            {(country) => {
+                                return (
+                                    <CountryCard
+                                        title={country.name.official}
+                                        content={country.flags.alt || ''}
+                                        flagSrc={country.flags.svg}
+                                        cioc={country.cioc}
+                                        variant="search"
+                                    />
+                                );
+                            }}
+                        </For>
+                    </div>
+                </ErrorBoundary>
+            </Show>
         </div>
     );
 };
