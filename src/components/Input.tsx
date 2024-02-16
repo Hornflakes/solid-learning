@@ -1,5 +1,6 @@
-import { Component, JSX } from 'solid-js';
+import { Component, JSX, Show } from 'solid-js';
 import ErrorParagraph from './ErrorParagraph';
+import Spinner from './Spinner';
 
 export type InputProps = {
     name: string;
@@ -11,6 +12,7 @@ export type InputProps = {
     onInput: JSX.EventHandler<HTMLInputElement, InputEvent>;
     onChange: JSX.EventHandler<HTMLInputElement, Event>;
     onBlur: JSX.EventHandler<HTMLInputElement, FocusEvent>;
+    loading?: boolean;
 };
 
 const Input: Component<InputProps> = (props) => {
@@ -22,14 +24,21 @@ const Input: Component<InputProps> = (props) => {
             >
                 {props.label} {props.required && <span>*</span>}
             </label>
-            <input
-                {...props}
-                id={props.name}
-                value={props.value || ''}
-                aria-invalid={!!props.error}
-                aria-errormessage={`${props.name}-error`}
-                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-            />
+            <div class="relative">
+                <Show when={props.loading}>
+                    <div class="pointer-events-none absolute inset-y-0 end-0 flex items-center pe-3.5">
+                        <Spinner height={6} width={6} />
+                    </div>
+                </Show>
+                <input
+                    {...props}
+                    id={props.name}
+                    value={props.value || ''}
+                    aria-invalid={!!props.error}
+                    aria-errormessage={`${props.name}-error`}
+                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pe-10 text-base text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                />
+            </div>
             {props.error && <ErrorParagraph error={props.error} />}
         </>
     );
