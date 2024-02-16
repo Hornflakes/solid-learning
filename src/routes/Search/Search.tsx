@@ -5,24 +5,20 @@ import ErrorParagraph from '../../components/ErrorParagraph';
 import { Country } from '../../types/country';
 import CountryCard from '../../components/CountryCard';
 import Sorter, { Sort } from '../../components/Sorter';
+import { getCountries } from '../../apis/country';
 
 type FormValues = {
     name: string;
 };
 
-const Search: Component = () => {
+const SearchPage: Component = () => {
     const [, { Form, Field }] = createForm<FormValues>();
     const [name, setName] = createSignal<string>();
     const [loading, setLoading] = createSignal<boolean>(false);
 
     const fetchCountries = async (name: string): Promise<Country[]> => {
         setLoading(true);
-        const res = await fetch(`https://restcountries.com/v3.1/name/${name}`).finally(() =>
-            setLoading(false),
-        );
-
-        if (res.status === 404) return [];
-        return res.json();
+        return getCountries(name).finally(() => setLoading(false));
     };
     const [countries, { mutate: mutateCountries, refetch: refetchCountries }] = createResource(
         name,
@@ -75,18 +71,22 @@ const Search: Component = () => {
                 </Form>
             </div>
 
-            <Sorter disabled={!countries()?.length} onSort={sortCountries} />
+            <Sorter disabled={(countries()?.length ?? 0) < 2} onSort={sortCountries} />
 
             <ErrorBoundary fallback={<ErrorParagraph error="something went wrong..." />}>
                 <div class="mt-4 flex flex-wrap gap-4">
                     <For each={countries()} fallback={countries() && 'no results ...'}>
-                        {(country) => (
-                            <CountryCard
-                                title={country.name.official}
-                                content={country.flags.alt || ''}
-                                flagSrc={country.flags.svg}
-                            />
-                        )}
+                        {(country) => {
+                            return (
+                                <CountryCard
+                                    title={country.name.official}
+                                    content={country.flags.alt || ''}
+                                    flagSrc={country.flags.svg}
+                                    cioc={country.cioc}
+                                    variant="search"
+                                />
+                            );
+                        }}
                     </For>
                 </div>
             </ErrorBoundary>
@@ -94,4 +94,4 @@ const Search: Component = () => {
     );
 };
 
-export default Search;
+export default SearchPage;

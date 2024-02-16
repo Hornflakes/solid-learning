@@ -10,7 +10,7 @@ export type Country = {
     cca2: string;
     ccn3: string;
     cca3: string;
-    cioc: string;
+    cioc: string | undefined;
     independent: boolean;
     status: string;
     unMember: boolean;
