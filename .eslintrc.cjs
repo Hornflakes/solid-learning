@@ -1,5 +1,5 @@
 module.exports = {
     parser: '@typescript-eslint/parser',
-    plugins: ['solid'],
+    plugins: ['@typescript-eslint', 'solid'],
     extends: ['eslint:recommended', 'plugin:solid/typescript'],
 };
