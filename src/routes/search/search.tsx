@@ -88,15 +88,7 @@ const SearchPage: Component = () => {
                     <div class="mt-4 flex flex-wrap gap-4">
                         <For each={countries()} fallback={searchParams.name && 'no results ...'}>
                             {(country) => {
-                                return (
-                                    <CountryCard
-                                        title={country.name.official}
-                                        content={country.flags.alt || ''}
-                                        flagSrc={country.flags.svg}
-                                        cioc={country.cioc}
-                                        variant="search"
-                                    />
-                                );
+                                return <CountryCard country={country} variant="search" />;
                             }}
                         </For>
                     </div>

@@ -4,7 +4,6 @@ export type SpinnerProps = {
     height?: number;
     width?: number;
 };
-
 const Spinner: Component<SpinnerProps> = (props) => {
     const merged = mergeProps({ height: 16, width: 16 }, props);
     const [show, setShow] = createSignal(false);

@@ -14,7 +14,6 @@ export type InputProps = {
     onBlur: JSX.EventHandler<HTMLInputElement, FocusEvent>;
     loading?: boolean;
 };
-
 const Input: Component<InputProps> = (props) => {
     return (
         <>

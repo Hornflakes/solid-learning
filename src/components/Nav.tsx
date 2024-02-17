@@ -6,7 +6,6 @@ type NavLinkProps = {
     name: string;
     href: string;
 };
-
 const NavLink: Component<NavLinkProps> = (props) => {
     const location = useLocation();
     const isActive = createMemo(() => {
@@ -74,6 +73,9 @@ const Nav: Component = () => {
                         </li>
                         <li>
                             <NavLink name="search" href="/search" />
+                        </li>
+                        <li>
+                            <NavLink name="favorites" href="/favorites" />
                         </li>
                         <li>
                             <NavLink name="lazy route" href="/lazy" />

@@ -19,13 +19,7 @@ const CountryPage: Component<RouteSectionProps> = (props: RouteSectionProps) => 
                     {(country) => {
                         return (
                             <div>
-                                <CountryCard
-                                    title={country.name.official}
-                                    content={country.flags.alt || ''}
-                                    flagSrc={country.flags.svg}
-                                    cioc={country.cioc}
-                                    variant="country"
-                                />
+                                <CountryCard country={country} variant="country" />
                             </div>
                         );
                     }}
