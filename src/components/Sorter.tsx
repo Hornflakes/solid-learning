@@ -1,4 +1,4 @@
-import { Component, Match, Switch, createEffect, createSignal } from 'solid-js';
+import { Component, Match, Switch, createEffect, createSignal, on } from 'solid-js';
 
 export type Sort = 'asc' | 'desc' | 'none';
 
@@ -10,11 +10,17 @@ export type SorterProps = {
 const Sorter: Component<SorterProps> = (props) => {
     const [sort, setSort] = createSignal<Sort>('none');
 
-    createEffect(() => {
-        if (props.disabled) {
-            setSort('none');
-        }
-    });
+    createEffect(
+        on(
+            () => props.disabled,
+            (disabled) => {
+                if (disabled) {
+                    setSort('none');
+                }
+            },
+            { defer: true },
+        ),
+    );
 
     const onSort = () => {
         if (sort() === 'none') {
