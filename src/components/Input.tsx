@@ -1,6 +1,6 @@
 import { Component, JSX, Show } from 'solid-js';
-import ErrorParagraph from './ErrorParagraph';
-import Spinner from './Spinner';
+import { ErrorParagraph } from './ErrorParagraph';
+import { Spinner } from './Spinner';
 
 export type InputProps = {
     name: string;
@@ -14,7 +14,7 @@ export type InputProps = {
     onBlur: JSX.EventHandler<HTMLInputElement, FocusEvent>;
     loading?: boolean;
 };
-const Input: Component<InputProps> = (props) => {
+export const Input: Component<InputProps> = (props) => {
     return (
         <>
             <label
@@ -42,5 +42,3 @@ const Input: Component<InputProps> = (props) => {
         </>
     );
 };
-
-export default Input;

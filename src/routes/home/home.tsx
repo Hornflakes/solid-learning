@@ -1,7 +1,7 @@
 import { Component } from 'solid-js';
 import logo from '../../assets/logo.svg';
 
-const HomePage: Component = () => {
+export const HomePage: Component = () => {
     return (
         <header class="flex flex-grow flex-col items-center justify-center gap-6">
             <img src={logo} class={'pointer-events-none h-48 animate-spin-slow'} alt="logo" />
@@ -19,5 +19,3 @@ const HomePage: Component = () => {
         </header>
     );
 };
-
-export default HomePage;

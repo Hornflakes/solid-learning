@@ -3,15 +3,15 @@ import { Route, Router } from '@solidjs/router';
 import { Layout } from './components';
 import { LazyChildren } from './components';
 import { loadCountry } from './data/country';
+import { FavoritesProvider } from './contexts/favorites';
 import { CountryPage, FavoritesPage, HomePage, SearchPage } from './routes';
-import FavoritesProvider from './contexts/favorites';
 
 const LazyPage = lazy(async () => {
     await new Promise((r) => setTimeout(r, 2000));
     return import('./routes').then((mod) => ({ default: mod.LazyPage }));
 });
 
-const App: Component = () => {
+export const App: Component = () => {
     return (
         <FavoritesProvider>
             <Router root={Layout}>
@@ -31,5 +31,3 @@ const App: Component = () => {
         </FavoritesProvider>
     );
 };
-
-export default App;

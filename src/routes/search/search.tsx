@@ -13,7 +13,7 @@ type SearchPageSearchParams = {
     name: string;
 };
 
-const SearchPage: Component = () => {
+export const SearchPage: Component = () => {
     const [form, { Form, Field }] = createForm<FormValues>();
     const [countries, setCountries] = createSignal<Country[] | undefined>();
     const [loading, setLoading] = createSignal<boolean>(false);
@@ -97,5 +97,3 @@ const SearchPage: Component = () => {
         </div>
     );
 };
-
-export default SearchPage;

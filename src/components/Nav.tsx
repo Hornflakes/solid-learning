@@ -28,7 +28,7 @@ const NavLink: Component<NavLinkProps> = (props) => {
     );
 };
 
-const Nav: Component = () => {
+export const Nav: Component = () => {
     return (
         <nav class="border-gray-200 bg-white dark:bg-gray-900">
             <div class="flex flex-wrap items-center justify-between p-4">
@@ -86,5 +86,3 @@ const Nav: Component = () => {
         </nav>
     );
 };
-
-export default Nav;

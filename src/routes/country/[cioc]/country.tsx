@@ -3,7 +3,7 @@ import { Component, Suspense, For, ErrorBoundary } from 'solid-js';
 import { getCountry } from '../../../data/country';
 import { CountryCard, Spinner } from '../../../components';
 
-const CountryPage: Component<RouteSectionProps> = (props: RouteSectionProps) => {
+export const CountryPage: Component<RouteSectionProps> = (props: RouteSectionProps) => {
     const navigate = useNavigate();
     const countries = createAsync(() => getCountry(props.params.cioc));
 
@@ -28,5 +28,3 @@ const CountryPage: Component<RouteSectionProps> = (props: RouteSectionProps) => 
         </ErrorBoundary>
     );
 };
-
-export default CountryPage;

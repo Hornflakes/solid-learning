@@ -12,7 +12,7 @@ const FavoritesContext = createContext<FavoritesStore>();
 type FavoritesProviderProps = {
     children: JSX.Element;
 };
-const FavoritesProvider: Component<FavoritesProviderProps> = (props) => {
+export const FavoritesProvider: Component<FavoritesProviderProps> = (props) => {
     const localStorageFavorites = JSON.parse(localStorage?.getItem('favorites') ?? '{}');
     const [favorites, setFavorites] =
         createStore<Record<string, CountryWithCioc>>(localStorageFavorites);
@@ -41,8 +41,6 @@ const FavoritesProvider: Component<FavoritesProviderProps> = (props) => {
 
     return <FavoritesContext.Provider value={store}>{props.children}</FavoritesContext.Provider>;
 };
-
-export default FavoritesProvider;
 
 export const useFavorites = () => {
     const context = useContext(FavoritesContext);

@@ -58,7 +58,7 @@ export type CountryCardProps = {
     country: Country;
     variant: 'search' | 'country' | 'favorite';
 };
-const CountryCard: Component<CountryCardProps> = (props) => {
+export const CountryCard: Component<CountryCardProps> = (props) => {
     const navigate = useNavigate();
 
     return (
@@ -147,5 +147,3 @@ const CountryCard: Component<CountryCardProps> = (props) => {
         </div>
     );
 };
-
-export default CountryCard;

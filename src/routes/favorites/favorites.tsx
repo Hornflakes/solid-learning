@@ -2,7 +2,7 @@ import { Component, For } from 'solid-js';
 import { useFavorites } from '../../contexts/favorites';
 import { CountryCard } from '../../components';
 
-const FavoritesPage: Component = () => {
+export const FavoritesPage: Component = () => {
     const { favorites } = useFavorites();
 
     return (
@@ -21,5 +21,3 @@ const FavoritesPage: Component = () => {
         </div>
     );
 };
-
-export default FavoritesPage;

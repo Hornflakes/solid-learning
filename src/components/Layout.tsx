@@ -1,8 +1,8 @@
 import { RouteSectionProps } from '@solidjs/router';
 import { Component } from 'solid-js';
-import Nav from './Nav';
+import { Nav } from './Nav';
 
-const Layout: Component<RouteSectionProps> = (props) => {
+export const Layout: Component<RouteSectionProps> = (props) => {
     return (
         <div class="flex h-screen flex-col">
             <Nav />
@@ -10,5 +10,3 @@ const Layout: Component<RouteSectionProps> = (props) => {
         </div>
     );
 };
-
-export default Layout;

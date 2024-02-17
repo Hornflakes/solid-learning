@@ -5,7 +5,7 @@ export type SorterProps = {
     disabled?: boolean;
     onSort: (sort: Sort) => void;
 };
-const Sorter: Component<SorterProps> = (props) => {
+export const Sorter: Component<SorterProps> = (props) => {
     const [sort, setSort] = createSignal<Sort>('none');
     createEffect(
         on(
@@ -99,5 +99,3 @@ const Sorter: Component<SorterProps> = (props) => {
         </button>
     );
 };
-
-export default Sorter;
