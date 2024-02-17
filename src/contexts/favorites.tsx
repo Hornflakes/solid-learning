@@ -1,6 +1,6 @@
 import { Component, JSX, createContext, createEffect, useContext } from 'solid-js';
 import { Country } from '../types/country';
-import { createStore, produce } from 'solid-js/store';
+import { createStore } from 'solid-js/store';
 
 export type CountryWithCioc = Country & { cioc: string };
 type FavoritesStore = {
@@ -23,15 +23,13 @@ export const FavoritesProvider: Component<FavoritesProviderProps> = (props) => {
     });
 
     const toggle = (country: CountryWithCioc): void => {
-        setFavorites(
-            produce((favs) => {
-                if (!favs[country.cioc]) {
-                    favs[country.cioc] = country;
-                } else {
-                    delete favs[country.cioc];
-                }
-            }),
-        );
+        setFavorites((favs) => {
+            if (!favs[country.cioc]) {
+                return { ...favs, [country.cioc]: country };
+            } else {
+                return { ...favs, [country.cioc]: undefined };
+            }
+        });
     };
 
     const store: FavoritesStore = {
