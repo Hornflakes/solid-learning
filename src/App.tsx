@@ -1,15 +1,13 @@
 import { lazy, type Component } from 'solid-js';
 import { Route, Router } from '@solidjs/router';
-import Layout from './components/Layout';
-import HomePage from './routes/home/home';
-import SearchPage from './routes/search/search';
-import LazyChildren from './components/LazyChildren';
-import CountryPage from './routes/country/[cioc]/country';
+import { Layout } from './components';
+import { LazyChildren } from './components';
 import { loadCountry } from './data/country';
+import { CountryPage, HomePage, SearchPage } from './routes';
 
 const LazyPage = lazy(async () => {
     await new Promise((r) => setTimeout(r, 2000));
-    return import('./routes/lazy/lazy');
+    return import('./routes').then((mod) => ({ default: mod.LazyPage }));
 });
 
 const App: Component = () => {

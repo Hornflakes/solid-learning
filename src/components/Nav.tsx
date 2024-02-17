@@ -2,7 +2,7 @@ import { Component, createMemo } from 'solid-js';
 import logo from '../assets/logo.svg';
 import { useLocation } from '@solidjs/router';
 
-export type NavLinkProps = {
+type NavLinkProps = {
     name: string;
     href: string;
 };

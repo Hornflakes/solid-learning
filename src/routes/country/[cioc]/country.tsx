@@ -1,8 +1,7 @@
 import { RouteSectionProps, createAsync, useNavigate } from '@solidjs/router';
 import { Component, Suspense, For, ErrorBoundary } from 'solid-js';
 import { getCountry } from '../../../data/country';
-import Spinner from '../../../components/Spinner';
-import CountryCard from '../../../components/CountryCard';
+import { CountryCard, Spinner } from '../../../components';
 
 const CountryPage: Component<RouteSectionProps> = (props: RouteSectionProps) => {
     const navigate = useNavigate();
