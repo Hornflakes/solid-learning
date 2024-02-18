@@ -1,9 +1,9 @@
 import { lazy, type Component } from 'solid-js';
 import { Route, Router } from '@solidjs/router';
-import { Layout } from './components';
-import { LazyChildren } from './components';
+import { Layout, LazyChildren } from './components';
+
 import { loadCountry } from './data/country';
-import { FavoritesProvider } from './contexts/favorites';
+import { FavoritesProvider, I18nProvider } from './contexts';
 import { CountryPage, FavoritesPage, HomePage, SearchPage } from './routes';
 
 const LazyPage = lazy(async () => {
@@ -13,21 +13,23 @@ const LazyPage = lazy(async () => {
 
 export const App: Component = () => {
     return (
-        <FavoritesProvider>
-            <Router root={Layout}>
-                <Route path="/" component={HomePage} />
-                <Route path="/search" component={SearchPage} />
-                <Route path="/favorites" component={FavoritesPage} />
-                <Route path="/country/:cioc" component={CountryPage} load={loadCountry} />;
-                <Route
-                    path="/lazy"
-                    component={() => (
-                        <LazyChildren>
-                            <LazyPage />
-                        </LazyChildren>
-                    )}
-                />
-            </Router>
-        </FavoritesProvider>
+        <I18nProvider>
+            <FavoritesProvider>
+                <Router root={Layout}>
+                    <Route path="/" component={HomePage} />
+                    <Route path="/search" component={SearchPage} />
+                    <Route path="/favorites" component={FavoritesPage} />
+                    <Route path="/country/:cioc" component={CountryPage} load={loadCountry} />;
+                    <Route
+                        path="/lazy"
+                        component={() => (
+                            <LazyChildren>
+                                <LazyPage />
+                            </LazyChildren>
+                        )}
+                    />
+                </Router>
+            </FavoritesProvider>
+        </I18nProvider>
     );
 };

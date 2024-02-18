@@ -1,6 +1,6 @@
 module.exports = {
     parser: '@typescript-eslint/parser',
-    plugins: ['@typescript-eslint', 'solid'],
+    plugins: ['@typescript-eslint', 'solid', 'import'],
     extends: [
         'eslint:recommended',
         'plugin:solid/typescript',
@@ -12,6 +12,7 @@ module.exports = {
         node: true,
     },
     rules: {
+        'import/no-duplicates': 'error',
         '@typescript-eslint/no-unused-vars': [
             'warn',
             {

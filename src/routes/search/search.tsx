@@ -1,9 +1,10 @@
 import { createForm, required, reset, setValue } from '@modular-forms/solid';
-import { Component, ErrorBoundary, For, createEffect, createSignal, Show } from 'solid-js';
+import { Component, For, createEffect, createSignal, Show } from 'solid-js';
 import { Country } from '../../types/country';
 import { getCountries } from '../../data/country';
 import { createAsync, useSearchParams } from '@solidjs/router';
-import { CountryCard, ErrorParagraph, Input, Sort, Sorter } from '../../components';
+import { CountryCard, Input, Sort, Sorter } from '../../components';
+import { useI18n } from '../../contexts';
 
 type FormValues = {
     name: string;
@@ -14,6 +15,7 @@ type SearchPageSearchParams = {
 };
 
 export const SearchPage: Component = () => {
+    const { t } = useI18n();
     const [form, { Form, Field }] = createForm<FormValues>();
     const [countries, setCountries] = createSignal<Country[] | undefined>();
     const [loading, setLoading] = createSignal<boolean>(false);
@@ -53,7 +55,7 @@ export const SearchPage: Component = () => {
     return (
         <div>
             <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-                search
+                {t('routes.search.search')}
             </h1>
 
             <div class="mb-3">
@@ -62,14 +64,17 @@ export const SearchPage: Component = () => {
                         setSearchParams({ name: vals.name });
                     }}
                 >
-                    <Field name="name" validate={[required('please enter a country name.')]}>
+                    <Field
+                        name="name"
+                        validate={[required(t('routes.search.please_enter_a_country'))]}
+                    >
                         {(field, props) => {
                             return (
                                 <div class="w-96">
                                     <Input
                                         {...props}
                                         type="text"
-                                        label="search countries:"
+                                        label={t('routes.search.search_countries')}
                                         value={field.value}
                                         error={field.error}
                                         loading={loading()}
@@ -84,15 +89,16 @@ export const SearchPage: Component = () => {
             <Sorter disabled={(countries()?.length ?? 0) < 2} onSort={sortCountries} />
 
             <Show when={!loading()}>
-                <ErrorBoundary fallback={<ErrorParagraph error="something went wrong..." />}>
-                    <div class="mt-4 flex flex-wrap gap-4">
-                        <For each={countries()} fallback={searchParams.name && 'no results ...'}>
-                            {(country) => {
-                                return <CountryCard country={country} variant="search" />;
-                            }}
-                        </For>
-                    </div>
-                </ErrorBoundary>
+                <div class="mt-4 flex flex-wrap gap-4">
+                    <For
+                        each={countries()}
+                        fallback={searchParams.name && <>{t('routes.search.no_results')}</>}
+                    >
+                        {(country) => {
+                            return <CountryCard country={country} variant="search" />;
+                        }}
+                    </For>
+                </div>
             </Show>
         </div>
     );

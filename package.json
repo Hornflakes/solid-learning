@@ -21,6 +21,7 @@
         "@typescript-eslint/parser": "^7.0.1",
         "autoprefixer": "^10.4.17",
         "eslint": "^8.56.0",
+        "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-solid": "^0.13.1",
         "husky": "^9.0.11",
         "lint-staged": "^15.2.2",
@@ -35,6 +36,7 @@
     },
     "dependencies": {
         "@modular-forms/solid": "^0.20.0",
+        "@solid-primitives/i18n": "^2.0.1",
         "@solidjs/router": "^0.12.0",
         "flowbite": "^2.3.0",
         "solid-js": "^1.8.11"

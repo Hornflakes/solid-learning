@@ -1,4 +1,5 @@
 import { Component, Show, createSignal, mergeProps, onMount } from 'solid-js';
+import { useI18n } from '../contexts';
 
 export type SpinnerProps = {
     height?: number;
@@ -6,6 +7,7 @@ export type SpinnerProps = {
 };
 export const Spinner: Component<SpinnerProps> = (props) => {
     const merged = mergeProps({ height: 16, width: 16 }, props);
+    const { t } = useI18n();
     const [show, setShow] = createSignal(false);
 
     onMount(() => {
@@ -33,7 +35,7 @@ export const Spinner: Component<SpinnerProps> = (props) => {
                         fill="currentFill"
                     />
                 </svg>
-                <span class="sr-only">loading</span>
+                <span class="sr-only">{t('components.spinner.loading')}</span>
             </div>
         </Show>
     );

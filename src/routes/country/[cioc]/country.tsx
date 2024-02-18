@@ -2,8 +2,10 @@ import { RouteSectionProps, createAsync, useNavigate } from '@solidjs/router';
 import { Component, Suspense, For, ErrorBoundary } from 'solid-js';
 import { getCountry } from '../../../data/country';
 import { CountryCard, Spinner } from '../../../components';
+import { useI18n } from '../../../contexts';
 
 export const CountryPage: Component<RouteSectionProps> = (props: RouteSectionProps) => {
+    const { t } = useI18n();
     const navigate = useNavigate();
     const countries = createAsync(() => getCountry(props.params.cioc));
 
@@ -15,7 +17,7 @@ export const CountryPage: Component<RouteSectionProps> = (props: RouteSectionPro
             }}
         >
             <Suspense fallback={<Spinner />}>
-                <For each={countries()} fallback={countries() && '404 not found'}>
+                <For each={countries()} fallback={countries() && <>{t('global.404')}</>}>
                     {(country) => {
                         return (
                             <div>

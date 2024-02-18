@@ -13,7 +13,7 @@ type FavoritesProviderProps = {
     children: JSX.Element;
 };
 export const FavoritesProvider: Component<FavoritesProviderProps> = (props) => {
-    const localStorageFavorites = JSON.parse(localStorage?.getItem('favorites') ?? '{}');
+    const localStorageFavorites = JSON.parse(localStorage.getItem('favorites') ?? '{}');
     const [favorites, setFavorites] =
         createStore<Record<string, CountryWithCioc>>(localStorageFavorites);
     createEffect(() => {

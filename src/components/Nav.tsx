@@ -1,6 +1,7 @@
 import { Component, createMemo } from 'solid-js';
 import logo from '../assets/logo.svg';
 import { useLocation } from '@solidjs/router';
+import { useI18n } from '../contexts';
 
 type NavLinkProps = {
     name: string;
@@ -29,6 +30,8 @@ const NavLink: Component<NavLinkProps> = (props) => {
 };
 
 export const Nav: Component = () => {
+    const { t, setLocale } = useI18n();
+
     return (
         <nav class="border-gray-200 bg-white dark:bg-gray-900">
             <div class="flex flex-wrap items-center justify-between p-4">
@@ -39,7 +42,7 @@ export const Nav: Component = () => {
                 >
                     <img src={logo} class="h-8" alt="logo" />
                     <span class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
-                        solid-learning
+                        {t('components.nav.title')}
                     </span>
                 </a>
                 <button
@@ -49,7 +52,7 @@ export const Nav: Component = () => {
                     aria-controls="navbar-default"
                     aria-expanded="false"
                 >
-                    <span class="sr-only">open main menu</span>
+                    <span class="sr-only">{t('components.nav.open_main_menu')}</span>
                     <svg
                         class="h-5 w-5"
                         aria-hidden="true"
@@ -67,18 +70,24 @@ export const Nav: Component = () => {
                     </svg>
                 </button>
                 <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-                    <ul class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900 rtl:space-x-reverse">
+                    <ul class="mt-4 flex flex-col items-center rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900 rtl:space-x-reverse">
+                        <button class="py-2" onClick={() => setLocale('ro')}>
+                            <img class="h-6" src="https://flagcdn.com/ro.svg" />
+                        </button>
+                        <button class="py-2" onClick={() => setLocale('en')}>
+                            <img class="h-6" src="https://flagcdn.com/us.svg" />
+                        </button>
                         <li>
-                            <NavLink name="home" href="/" />
+                            <NavLink name={t('components.nav.home')} href="/" />
                         </li>
                         <li>
-                            <NavLink name="search" href="/search" />
+                            <NavLink name={t('components.nav.search')} href="/search" />
                         </li>
                         <li>
-                            <NavLink name="favorites" href="/favorites" />
+                            <NavLink name={t('components.nav.favorites')} href="/favorites" />
                         </li>
                         <li>
-                            <NavLink name="lazy route" href="/lazy" />
+                            <NavLink name={t('components.nav.lazy_route')} href="/lazy" />
                         </li>
                     </ul>
                 </div>

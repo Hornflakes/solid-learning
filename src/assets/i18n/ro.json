@@ -1,0 +1,50 @@
+{
+    "global": {
+        "logo": "logo",
+        "404": "404 negăsit"
+    },
+    "components": {
+        "nav": {
+            "title": "solid-learning",
+            "open_main_menu": "deschide meniul principal",
+            "home": "acasă",
+            "search": "caută",
+            "favorites": "favorite",
+            "lazy_route": "rută leneșă"
+        },
+        "country_card": {
+            "add_to_favorites": "adaugă la favorite",
+            "remove_from_favorites": "scoate de la favorite",
+            "read_more": "mai multe",
+            "back": "înapoi"
+        },
+        "sorter": {
+            "sort": "sortează",
+            "no_sort": "fără sortare",
+            "ascending_sort": "sortare ascendentă",
+            "descending_sort": "sortare descendentă"
+        },
+        "spinner": {
+            "loading": "se încarcă"
+        }
+    },
+    "routes": {
+        "home": {
+            "description": "editează {{path}} și salvează pentru a reîncărca",
+            "learn_solid": "învață solid"
+        },
+        "search": {
+            "search": "caută",
+            "search_countries": "caută țări:",
+            "please_enter_a_country": "te rog introdu o țară",
+            "error": "ceva n-a mers bine...",
+            "no_results": "niciun rezultat..."
+        },
+        "favorites": {
+            "favorites": "favorite"
+        },
+        "lazy_route": {
+            "im_lazy": "sunt leneșă"
+        }
+    }
+}

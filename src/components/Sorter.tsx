@@ -1,4 +1,5 @@
 import { Component, Match, Switch, createEffect, createSignal, on } from 'solid-js';
+import { useI18n } from '../contexts';
 
 export type Sort = 'asc' | 'desc' | 'none';
 export type SorterProps = {
@@ -6,6 +7,7 @@ export type SorterProps = {
     onSort: (sort: Sort) => void;
 };
 export const Sorter: Component<SorterProps> = (props) => {
+    const { t } = useI18n();
     const [sort, setSort] = createSignal<Sort>('none');
     createEffect(
         on(
@@ -37,7 +39,7 @@ export const Sorter: Component<SorterProps> = (props) => {
             class="inline-flex h-max items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             onClick={onSort}
         >
-            Sort
+            {t('components.sorter.sort')}
             <div role="status">
                 <Switch>
                     <Match when={sort() === 'none'}>
@@ -56,7 +58,7 @@ export const Sorter: Component<SorterProps> = (props) => {
                                 d="m8 15 4 4 4-4m0-6-4-4-4 4"
                             />
                         </svg>
-                        <span class="sr-only">no sort</span>
+                        <span class="sr-only">{t('components.sorter.no_sort')}</span>
                     </Match>
                     <Match when={sort() === 'asc'}>
                         <svg
@@ -74,7 +76,7 @@ export const Sorter: Component<SorterProps> = (props) => {
                                 d="m16 14-4-4-4 4"
                             />
                         </svg>
-                        <span class="sr-only">ascending sort</span>
+                        <span class="sr-only">{t('components.sorter.ascending_sort')}</span>
                     </Match>
                     <Match when={sort() === 'desc'}>
                         <svg
@@ -92,7 +94,7 @@ export const Sorter: Component<SorterProps> = (props) => {
                                 d="m8 10 4 4 4-4"
                             />
                         </svg>
-                        <span class="sr-only">descending sort</span>
+                        <span class="sr-only">{t('components.sorter.descending_sort')}</span>
                     </Match>
                 </Switch>
             </div>

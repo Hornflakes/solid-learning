@@ -1,0 +1,50 @@
+{
+    "global": {
+        "logo": "logo",
+        "404": "404 not found"
+    },
+    "components": {
+        "nav": {
+            "title": "solid-learning",
+            "open_main_menu": "open main menu",
+            "home": "home",
+            "search": "search",
+            "favorites": "favorites",
+            "lazy_route": "lazy route"
+        },
+        "country_card": {
+            "add_to_favorites": "add to favorites",
+            "remove_from_favorites": "remove from favorites",
+            "read_more": "read more",
+            "back": "back"
+        },
+        "sorter": {
+            "sort": "sort",
+            "no_sort": "no sort",
+            "ascending_sort": "ascending sort",
+            "descending_sort": "descending sort"
+        },
+        "spinner": {
+            "loading": "loading"
+        }
+    },
+    "routes": {
+        "home": {
+            "description": "edit {{path}} and save to reload",
+            "learn_solid": "learn solid"
+        },
+        "search": {
+            "search": "search",
+            "search_countries": "search countries:",
+            "please_enter_a_country": "please enter a country",
+            "error": "something went wrong...",
+            "no_results": "no results..."
+        },
+        "favorites": {
+            "favorites": "favorites"
+        },
+        "lazy_route": {
+            "im_lazy": "i'm lazy"
+        }
+    }
+}

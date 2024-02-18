@@ -1,12 +1,13 @@
 import { useNavigate } from '@solidjs/router';
 import { Component, Match, Show, Switch } from 'solid-js';
-import { CountryWithCioc, useFavorites } from '../contexts/favorites';
+import { CountryWithCioc, useFavorites, useI18n } from '../contexts';
 import { Country } from '../types/country';
 
 type FavoriteButtonProps = {
     country: CountryWithCioc;
 };
 const FavoriteButton: Component<FavoriteButtonProps> = (props) => {
+    const { t } = useI18n();
     const { favorites, toggle } = useFavorites();
 
     return (
@@ -33,7 +34,7 @@ const FavoriteButton: Component<FavoriteButtonProps> = (props) => {
                                 d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z"
                             />
                         </svg>
-                        <span class="sr-only">add to favorites</span>
+                        <span class="sr-only">{t('components.country_card.add_to_favorites')}</span>
                     </>
                 }
             >
@@ -47,7 +48,9 @@ const FavoriteButton: Component<FavoriteButtonProps> = (props) => {
                     >
                         <path d="m12.7 20.7 6.2-7.1c2.7-3 2.6-6.5.8-8.7A5 5 0 0 0 16 3c-1.3 0-2.7.4-4 1.4A6.3 6.3 0 0 0 8 3a5 5 0 0 0-3.7 1.9c-1.8 2.2-2 5.8.8 8.7l6.2 7a1 1 0 0 0 1.4 0Z" />
                     </svg>
-                    <span class="sr-only">remove from favorites</span>
+                    <span class="sr-only">
+                        {t('components.country_card.remove_from_favorites')}
+                    </span>
                 </>
             </Show>
         </button>
@@ -60,6 +63,7 @@ export type CountryCardProps = {
 };
 export const CountryCard: Component<CountryCardProps> = (props) => {
     const navigate = useNavigate();
+    const { t } = useI18n();
 
     return (
         <div class="flex max-w-sm flex-col rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
@@ -90,7 +94,7 @@ export const CountryCard: Component<CountryCardProps> = (props) => {
                                         href={`/country/${cioc()}`}
                                         class="inline-flex items-center self-end rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                     >
-                                        Read more
+                                        {t('components.country_card.read_more')}
                                         <svg
                                             class="ms-2 h-3.5 w-3.5"
                                             aria-hidden="true"
@@ -118,7 +122,7 @@ export const CountryCard: Component<CountryCardProps> = (props) => {
                                 onClick={() => navigate(-1)}
                                 class="inline-flex items-center self-end rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                             >
-                                Back
+                                {t('components.country_card.back')}
                                 <svg
                                     class="ms-2 h-5 w-5 "
                                     aria-hidden="true"
