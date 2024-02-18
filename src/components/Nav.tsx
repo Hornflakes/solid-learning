@@ -1,7 +1,7 @@
 import { Component, createMemo } from 'solid-js';
 import logo from '../assets/logo.svg';
 import { useLocation } from '@solidjs/router';
-import { useI18n } from '../contexts';
+import { Locale, useI18n } from '../contexts';
 
 type NavLinkProps = {
     name: string;
@@ -71,10 +71,10 @@ export const Nav: Component = () => {
                 </button>
                 <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                     <ul class="mt-4 flex flex-col items-center rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900 rtl:space-x-reverse">
-                        <button class="py-2" onClick={() => setLocale('ro')}>
+                        <button class="py-2" onClick={() => setLocale(Locale.ro)}>
                             <img class="h-6" src="https://flagcdn.com/ro.svg" />
                         </button>
-                        <button class="py-2" onClick={() => setLocale('en')}>
+                        <button class="py-2" onClick={() => setLocale(Locale.en)}>
                             <img class="h-6" src="https://flagcdn.com/us.svg" />
                         </button>
                         <li>

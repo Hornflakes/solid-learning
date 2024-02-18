@@ -1,5 +1,7 @@
-/** @type {import('tailwindcss').Config}*/
-const config = {
+import flowbite from 'flowbite/plugin';
+import { Config } from 'tailwindcss';
+
+export default {
     content: ['./src/**/*.{js,jsx,ts,tsx}', './node_modules/flowbite/**/*.js'],
     theme: {
         extend: {
@@ -8,8 +10,6 @@ const config = {
             },
         },
     },
-    plugins: [require('flowbite/plugin')],
+    plugins: [flowbite],
     darkMode: 'class',
-};
-
-module.exports = config;
+} satisfies Config;
