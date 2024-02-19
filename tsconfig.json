@@ -11,6 +11,21 @@
         "types": ["vite/client"],
         "noEmit": true,
         "isolatedModules": true,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "baseUrl": ".",
+        "paths": {
+            "@assets": ["src/assets"],
+            "@assets/*": ["src/assets/*"],
+            "@components": ["src/components"],
+            "@components/*": ["src/components/*"],
+            "@contexts": ["src/contexts"],
+            "@contexts/*": ["src/contexts/*"],
+            "@data": ["src/data"],
+            "@data/*": ["src/data/*"],
+            "@routes": ["src/routes"],
+            "@routes/*": ["src/routes/*"],
+            "@types": ["src/types"],
+            "@types/*": ["src/types/*"]
+        }
     }
 }

@@ -41,5 +41,11 @@ module.exports = {
                 modifiers: ['unused'],
             },
         ],
+        'no-restricted-imports': [
+            'error',
+            {
+                patterns: ['../*', './../*'],
+            },
+        ],
     },
 };

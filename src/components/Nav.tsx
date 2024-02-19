@@ -1,8 +1,7 @@
 import { Component, createMemo, Show } from 'solid-js';
-import logo from '../assets/logo.svg';
+import logo from '@assets/logo.svg';
 import { useLocation } from '@solidjs/router';
-import { Locale, useI18n } from '../contexts';
-import { useTheme } from '../contexts/theme';
+import { Locale, useI18n, useTheme } from '@contexts';
 
 type NavLinkProps = {
     name: string;

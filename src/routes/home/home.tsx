@@ -1,6 +1,6 @@
 import { Component } from 'solid-js';
-import logo from '../../assets/logo.svg';
-import { useI18n } from '../../contexts';
+import logo from '@assets/logo.svg';
+import { useI18n } from '@contexts';
 
 export const HomePage: Component = () => {
     const { t } = useI18n();

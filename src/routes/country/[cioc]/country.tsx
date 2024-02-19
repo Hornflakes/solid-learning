@@ -1,8 +1,8 @@
 import { RouteSectionProps, createAsync, useNavigate } from '@solidjs/router';
 import { Component, Suspense, For, ErrorBoundary } from 'solid-js';
-import { getCountry } from '../../../data/country';
-import { CountryCard, Spinner } from '../../../components';
-import { useI18n } from '../../../contexts';
+import { CountryCard, Spinner } from '@components';
+import { getCountry } from '@data/country';
+import { useI18n } from '@contexts';
 
 export const CountryPage: Component<RouteSectionProps> = (props: RouteSectionProps) => {
     const { t } = useI18n();

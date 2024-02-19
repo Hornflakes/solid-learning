@@ -1,5 +1,5 @@
 import * as i18n from '@solid-primitives/i18n';
-import * as en from '../assets/i18n/en.json';
+import * as en from '@assets/i18n/en.json';
 import {
     Accessor,
     Component,
@@ -10,7 +10,7 @@ import {
     createSignal,
     useContext,
 } from 'solid-js';
-import { ChildrenProps } from '../types';
+import { ChildrenProps } from '@types';
 
 export enum Locale {
     en = 'en',
@@ -20,7 +20,7 @@ export type RawDictionary = typeof en;
 export type Dictionary = i18n.Flatten<RawDictionary>;
 
 const fetchDictionary = async (locale: Locale): Promise<Dictionary> => {
-    const dict: RawDictionary = await import(`../assets/i18n/${locale}.json`);
+    const dict: RawDictionary = await import(`@assets/i18n/${locale}.json`);
     return i18n.flatten(dict);
 };
 

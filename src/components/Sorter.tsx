@@ -1,5 +1,5 @@
 import { Component, Match, Switch, createEffect, createSignal, on } from 'solid-js';
-import { useI18n } from '../contexts';
+import { useI18n } from '@contexts';
 
 export type Sort = 'asc' | 'desc' | 'none';
 export type SorterProps = {

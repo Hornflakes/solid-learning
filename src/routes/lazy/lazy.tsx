@@ -1,5 +1,5 @@
 import { Component } from 'solid-js';
-import { useI18n } from '../../contexts';
+import { useI18n } from '@contexts';
 
 export const LazyPage: Component = () => {
     const { t } = useI18n();

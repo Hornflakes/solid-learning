@@ -1,5 +1,5 @@
 import { Component, Show, createSignal, mergeProps, onMount } from 'solid-js';
-import { useI18n } from '../contexts';
+import { useI18n } from '@contexts';
 
 export type SpinnerProps = {
     height?: number;

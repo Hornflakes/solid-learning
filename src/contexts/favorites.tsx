@@ -1,5 +1,5 @@
 import { Component, createContext, createEffect, useContext } from 'solid-js';
-import { Country, ChildrenProps } from '../types';
+import { Country, ChildrenProps } from '@types';
 import { createStore } from 'solid-js/store';
 
 export type CountryWithCioc = Country & { cioc: string };

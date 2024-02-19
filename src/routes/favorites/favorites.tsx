@@ -1,6 +1,6 @@
 import { Component, For } from 'solid-js';
-import { useFavorites, useI18n } from '../../contexts';
-import { CountryCard } from '../../components';
+import { useFavorites, useI18n } from '@contexts';
+import { CountryCard } from '@components';
 
 export const FavoritesPage: Component = () => {
     const { t } = useI18n();

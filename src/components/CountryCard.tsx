@@ -1,7 +1,7 @@
 import { useNavigate } from '@solidjs/router';
 import { Component, Match, Show, Switch } from 'solid-js';
-import { CountryWithCioc, useFavorites, useI18n } from '../contexts';
-import { Country } from '../types';
+import { CountryWithCioc, useFavorites, useI18n } from '@contexts';
+import { Country } from '@types';
 
 type FavoriteButtonProps = {
     country: CountryWithCioc;

@@ -6,7 +6,7 @@ import {
     createSignal,
     useContext,
 } from 'solid-js';
-import { ChildrenProps } from '../types';
+import { ChildrenProps } from '@types';
 
 type ThemeState = {
     dark: Accessor<boolean>;
