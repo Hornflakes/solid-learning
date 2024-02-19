@@ -6,3 +6,5 @@ export * from './LazyChildren';
 export * from './Nav';
 export * from './Sorter';
 export * from './Spinner';
+export * from './ProtectedRoute';
+export * from './FourOhFour';

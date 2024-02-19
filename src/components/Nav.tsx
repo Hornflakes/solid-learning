@@ -1,7 +1,7 @@
 import { Component, createMemo, Show } from 'solid-js';
 import logo from '@assets/logo.svg';
 import { useLocation } from '@solidjs/router';
-import { Locale, useI18n, useTheme } from '@contexts';
+import { Locale, useAuth, useI18n, useTheme } from '@contexts';
 
 type NavLinkProps = {
     name: string;
@@ -32,6 +32,7 @@ const NavLink: Component<NavLinkProps> = (props) => {
 export const Nav: Component = () => {
     const { t, setLocale } = useI18n();
     const { dark, setDark } = useTheme();
+    const { auth, setAuth } = useAuth();
 
     return (
         <nav class="border-gray-200 bg-white dark:bg-gray-900">
@@ -72,6 +73,20 @@ export const Nav: Component = () => {
                 </button>
                 <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                     <ul class="mt-4 flex flex-col items-center rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900 rtl:space-x-reverse">
+                        <label class="inline-flex cursor-pointer items-center">
+                            <input
+                                type="checkbox"
+                                value=""
+                                class="peer sr-only"
+                                onClick={() => setAuth(!auth())}
+                            />
+                            <div class="peer relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800 rtl:peer-checked:after:-translate-x-full" />
+                            <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                {auth()
+                                    ? t('components.nav.logged_in')
+                                    : t('components.nav.logged_out')}
+                            </span>
+                        </label>
                         <Show
                             when={!dark()}
                             fallback={
@@ -129,6 +144,9 @@ export const Nav: Component = () => {
                         </li>
                         <li>
                             <NavLink name={t('components.nav.lazy_route')} href="/lazy" />
+                        </li>
+                        <li>
+                            <NavLink name={t('components.nav.protected_route')} href="/protected" />
                         </li>
                     </ul>
                 </div>

@@ -10,7 +10,10 @@
             "home": "acasă",
             "search": "caută",
             "favorites": "favorite",
-            "lazy_route": "rută leneșă"
+            "lazy_route": "rută leneșă",
+            "protected_route": "rută protejată",
+            "logged_in": "logat",
+            "logged_out": "nelogat"
         },
         "country_card": {
             "add_to_favorites": "adaugă la favorite",
@@ -45,6 +48,9 @@
         },
         "lazy_route": {
             "im_lazy": "sunt leneșă"
+        },
+        "protected_route": {
+            "im_protected": "sunt protejată"
         }
     }
 }

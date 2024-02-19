@@ -10,7 +10,10 @@
             "home": "home",
             "search": "search",
             "favorites": "favorites",
-            "lazy_route": "lazy route"
+            "lazy_route": "lazy route",
+            "protected_route": "protected route",
+            "logged_in": "logged in",
+            "logged_out": "logged out"
         },
         "country_card": {
             "add_to_favorites": "add to favorites",
@@ -45,6 +48,9 @@
         },
         "lazy_route": {
             "im_lazy": "i'm lazy"
+        },
+        "protected_route": {
+            "im_protected": "i'm protected"
         }
     }
 }
