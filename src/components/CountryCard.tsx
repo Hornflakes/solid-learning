@@ -1,7 +1,7 @@
 import { useNavigate } from '@solidjs/router';
 import { Component, Match, Show, Switch } from 'solid-js';
 import { CountryWithCioc, useFavorites, useI18n } from '../contexts';
-import { Country } from '../types/country';
+import { Country } from '../types';
 
 type FavoriteButtonProps = {
     country: CountryWithCioc;
@@ -12,7 +12,7 @@ const FavoriteButton: Component<FavoriteButtonProps> = (props) => {
 
     return (
         <button
-            class="inline-flex items-center self-end rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            class="inline-flex items-center self-end rounded-lg bg-blue-500 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             onClick={() => toggle(props.country)}
         >
             <Show
@@ -20,7 +20,7 @@ const FavoriteButton: Component<FavoriteButtonProps> = (props) => {
                 fallback={
                     <>
                         <svg
-                            class="h-5 w-5 text-gray-800 dark:text-white"
+                            class="h-5 w-5 text-white"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -92,7 +92,7 @@ export const CountryCard: Component<CountryCardProps> = (props) => {
                                     <FavoriteButton country={props.country as CountryWithCioc} />
                                     <a
                                         href={`/country/${cioc()}`}
-                                        class="inline-flex items-center self-end rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                        class="inline-flex items-center self-end rounded-lg bg-blue-500 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                     >
                                         {t('components.country_card.read_more')}
                                         <svg
@@ -120,7 +120,7 @@ export const CountryCard: Component<CountryCardProps> = (props) => {
                             <FavoriteButton country={props.country as CountryWithCioc} />
                             <button
                                 onClick={() => navigate(-1)}
-                                class="inline-flex items-center self-end rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                class="inline-flex items-center self-end rounded-lg bg-blue-500 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                             >
                                 {t('components.country_card.back')}
                                 <svg

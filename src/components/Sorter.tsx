@@ -36,7 +36,7 @@ export const Sorter: Component<SorterProps> = (props) => {
         <button
             disabled={props.disabled}
             type="button"
-            class="inline-flex h-max items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            class="inline-flex h-max items-center rounded-lg bg-blue-500 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             onClick={onSort}
         >
             {t('components.sorter.sort')}
@@ -44,7 +44,7 @@ export const Sorter: Component<SorterProps> = (props) => {
                 <Switch>
                     <Match when={sort() === 'none'}>
                         <svg
-                            class="h-6 w-6 text-gray-800 dark:text-white"
+                            class="h-6 w-6 text-white"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -62,7 +62,7 @@ export const Sorter: Component<SorterProps> = (props) => {
                     </Match>
                     <Match when={sort() === 'asc'}>
                         <svg
-                            class="h-6 w-6 text-gray-800 dark:text-white"
+                            class="h-6 w-6 text-white"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -80,7 +80,7 @@ export const Sorter: Component<SorterProps> = (props) => {
                     </Match>
                     <Match when={sort() === 'desc'}>
                         <svg
-                            class="h-6 w-6 text-gray-800 dark:text-white"
+                            class="h-6 w-6 text-white"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"

@@ -1,5 +1,5 @@
-import { Component, JSX, createContext, createEffect, useContext } from 'solid-js';
-import { Country } from '../types/country';
+import { Component, createContext, createEffect, useContext } from 'solid-js';
+import { Country, ChildrenProps } from '../types';
 import { createStore } from 'solid-js/store';
 
 export type CountryWithCioc = Country & { cioc: string };
@@ -9,10 +9,7 @@ type FavoritesStore = {
 };
 const FavoritesContext = createContext<FavoritesStore>();
 
-type FavoritesProviderProps = {
-    children: JSX.Element;
-};
-export const FavoritesProvider: Component<FavoritesProviderProps> = (props) => {
+export const FavoritesProvider: Component<ChildrenProps> = (props) => {
     const localStorageFavorites = JSON.parse(localStorage.getItem('favorites') ?? '{}');
     const [favorites, setFavorites] =
         createStore<Record<string, CountryWithCioc>>(localStorageFavorites);

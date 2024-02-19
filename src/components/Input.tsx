@@ -1,4 +1,4 @@
-import { Component, JSX, Show } from 'solid-js';
+import { Component, Show } from 'solid-js';
 import { ErrorParagraph } from './ErrorParagraph';
 import { Spinner } from './Spinner';
 

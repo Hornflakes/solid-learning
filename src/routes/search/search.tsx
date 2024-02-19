@@ -1,6 +1,6 @@
 import { createForm, required, reset, setValue } from '@modular-forms/solid';
 import { Component, For, createEffect, createSignal, Show } from 'solid-js';
-import { Country } from '../../types/country';
+import { Country } from '../../types';
 import { getCountries } from '../../data/country';
 import { createAsync, useSearchParams } from '@solidjs/router';
 import { CountryCard, Input, Sort, Sorter } from '../../components';

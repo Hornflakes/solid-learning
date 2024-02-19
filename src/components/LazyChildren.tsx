@@ -1,9 +1,7 @@
-import { Suspense, type Component, JSX } from 'solid-js';
+import { Suspense, type Component } from 'solid-js';
 import { Spinner } from './Spinner';
+import { ChildrenProps } from '../types';
 
-export type LazyChildrenProps = {
-    children: JSX.Element;
-};
-export const LazyChildren: Component<LazyChildrenProps> = (props) => {
+export const LazyChildren: Component<ChildrenProps> = (props) => {
     return <Suspense fallback={<Spinner />}>{props.children}</Suspense>;
 };

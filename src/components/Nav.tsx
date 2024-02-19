@@ -1,7 +1,8 @@
-import { Component, createMemo } from 'solid-js';
+import { Component, createMemo, Show } from 'solid-js';
 import logo from '../assets/logo.svg';
 import { useLocation } from '@solidjs/router';
 import { Locale, useI18n } from '../contexts';
+import { useTheme } from '../contexts/theme';
 
 type NavLinkProps = {
     name: string;
@@ -31,6 +32,7 @@ const NavLink: Component<NavLinkProps> = (props) => {
 
 export const Nav: Component = () => {
     const { t, setLocale } = useI18n();
+    const { dark, setDark } = useTheme();
 
     return (
         <nav class="border-gray-200 bg-white dark:bg-gray-900">
@@ -71,6 +73,46 @@ export const Nav: Component = () => {
                 </button>
                 <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                     <ul class="mt-4 flex flex-col items-center rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900 rtl:space-x-reverse">
+                        <Show
+                            when={!dark()}
+                            fallback={
+                                <button onClick={() => setDark(false)}>
+                                    <svg
+                                        class="h-6 w-6 text-white hover:text-blue-500"
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 21a9 9 0 0 1-.5-18v0A9 9 0 0 0 20 15h.5a9 9 0 0 1-8.5 6Z"
+                                        />
+                                    </svg>
+                                </button>
+                            }
+                        >
+                            <button onClick={() => setDark(true)}>
+                                <svg
+                                    class="h-6 w-6 text-gray-800 hover:text-blue-700"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 5V3m0 18v-2M7 7 5.7 5.7m12.8 12.8L17 17M5 12H3m18 0h-2M7 17l-1.4 1.4M18.4 5.6 17 7.1M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"
+                                    />
+                                </svg>
+                            </button>
+                        </Show>
                         <button class="py-2" onClick={() => setLocale(Locale.ro)}>
                             <img class="h-6" src="https://flagcdn.com/ro.svg" />
                         </button>

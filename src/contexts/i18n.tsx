@@ -3,7 +3,6 @@ import * as en from '../assets/i18n/en.json';
 import {
     Accessor,
     Component,
-    JSX,
     Suspense,
     createContext,
     createEffect,
@@ -11,6 +10,7 @@ import {
     createSignal,
     useContext,
 } from 'solid-js';
+import { ChildrenProps } from '../types';
 
 export enum Locale {
     en = 'en',
@@ -37,10 +37,7 @@ type I18nState = {
 
 const I18nContext = createContext<I18nState>();
 
-type I18nProviderProps = {
-    children: JSX.Element;
-};
-export const I18nProvider: Component<I18nProviderProps> = (props) => {
+export const I18nProvider: Component<ChildrenProps> = (props) => {
     const initialLocale = JSON.parse(
         localStorage.getItem('locale') ?? `"${getPrefferedLanguage()}"` ?? '"en"',
     );

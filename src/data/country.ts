@@ -1,5 +1,5 @@
 import { RouteLoadFunc, cache } from '@solidjs/router';
-import { Country } from '../types/country';
+import { Country } from '../types';
 
 export const getCountries = cache(async (name: string): Promise<Country[]> => {
     const res = await fetch(`https://restcountries.com/v3.1/name/${name}`);
