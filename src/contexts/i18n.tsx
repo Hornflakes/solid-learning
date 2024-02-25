@@ -5,9 +5,9 @@ import {
     Component,
     Suspense,
     createContext,
-    createEffect,
     createResource,
     createSignal,
+    onMount,
     useContext,
 } from 'solid-js';
 import { ChildrenProps } from '@types';
@@ -42,7 +42,7 @@ export const I18nProvider: Component<ChildrenProps> = (props) => {
         localStorage.getItem('locale') ?? `"${getPrefferedLanguage()}"` ?? '"en"',
     );
     const [locale, setLocale] = createSignal<Locale>(initialLocale);
-    createEffect(() => {
+    onMount(() => {
         window.addEventListener('beforeunload', () => {
             localStorage.setItem('locale', JSON.stringify(locale()));
         });

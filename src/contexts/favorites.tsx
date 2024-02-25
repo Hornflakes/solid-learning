@@ -1,4 +1,4 @@
-import { Component, createContext, createEffect, useContext } from 'solid-js';
+import { Component, createContext, onMount, useContext } from 'solid-js';
 import { Country, ChildrenProps } from '@types';
 import { createStore } from 'solid-js/store';
 
@@ -13,7 +13,7 @@ export const FavoritesProvider: Component<ChildrenProps> = (props) => {
     const localStorageFavorites = JSON.parse(localStorage.getItem('favorites') ?? '{}');
     const [favorites, setFavorites] =
         createStore<Record<string, CountryWithCioc>>(localStorageFavorites);
-    createEffect(() => {
+    onMount(() => {
         window.addEventListener('beforeunload', () => {
             localStorage.setItem('favorites', JSON.stringify(favorites));
         });

@@ -4,6 +4,7 @@ import {
     createContext,
     createEffect,
     createSignal,
+    onMount,
     useContext,
 } from 'solid-js';
 import { ChildrenProps } from '@types';
@@ -27,7 +28,7 @@ export const ThemeProvider: Component<ChildrenProps> = (props) => {
         htmlElement.classList.toggle('dark', dark());
     });
 
-    createEffect(() => {
+    onMount(() => {
         window.addEventListener('beforeunload', () => {
             localStorage.setItem('dark', JSON.stringify(dark()));
         });
